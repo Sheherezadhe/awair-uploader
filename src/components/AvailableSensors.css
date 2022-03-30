@@ -1,0 +1,26 @@
+.titleAvailable {
+    margin-top: 10px;
+        background-color: black;
+           color: white;
+           height: 35px;
+           margin-bottom: 0 !important;
+           border-top-left-radius: 10px;
+           border-top-right-radius: 10px;
+           font-size: 20px;
+           padding-left: 10px;
+}
+
+.boxAvailable {
+    height: 330px;
+    margin-top: 0 !important;
+    background-color: white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px ;
+    scrollbar-width: thin;
+    overflow: overlay;
+}
+
+.list {
+    padding: 5px;
+    padding-left: 10px;
+}
