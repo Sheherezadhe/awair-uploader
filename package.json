@@ -1,5 +1,8 @@
 {
   "name": "awair-uploader",
+  "author": {
+    "name": "PW Community"
+  },
   "productName": "awair-uploader",
   "version": "0.0.1",
   "description": "An Awair Element data uploader",
