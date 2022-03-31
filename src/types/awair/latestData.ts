@@ -2,11 +2,11 @@ export interface AwairLatestData {
   timestamp: string,
   score: number,
   sensors: {
-    camp: string,
+    comp: string,
     value: number
   }[],
   indices: {
-    camp: string,
+    comp: string,
     value: number
   }[]
 }
