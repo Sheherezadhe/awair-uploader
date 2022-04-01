@@ -1,12 +1,16 @@
-export interface AwairLatestData {
-  timestamp: string,
-  score: number,
+export interface AwairDataPacket {
+  timestamp: string;
+  score: number;
   sensors: {
-    camp: string,
-    value: number
-  }[],
+    comp: string;
+    value: number;
+  }[];
   indices: {
-    camp: string,
-    value: number
-  }[]
+    comp: string;
+    value: number;
+  }[];
+}
+
+export interface AwairLatestData {
+  data: AwairDataPacket[];
 }

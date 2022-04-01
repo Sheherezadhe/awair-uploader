@@ -20,7 +20,7 @@ const ManageSensors = () => {
     setRegisteredAccounts(Scheduler.getInstance().getAccounts());
   }, []);
 
-  const addAccount = async () => {
+  const onAddAccount = async () => {
     setRegisteredAccounts(await Scheduler.getInstance().addSubscription({ jwt: tempJwt, devices }));
   };
 
@@ -48,6 +48,10 @@ const ManageSensors = () => {
     setRegisteredAccounts(Scheduler.getInstance().removeSubscription(device));
   };
 
+  const onRemoveAllDevice = () => {
+    setRegisteredAccounts(Scheduler.getInstance().removeAllSubscriptions());
+  };
+
   return (
     <>
       <p className='TitleManage'>Manage sensors</p>
@@ -71,15 +75,15 @@ const ManageSensors = () => {
             ))
           }
         </div>
-        <Button className='button' disabled={devices.length < 1} onClick={addAccount}>Add your token</Button>
+        <Button className='button' disabled={devices.length < 1} onClick={onAddAccount}>Add your token</Button>
         <div className='title'>List of added sensors:</div>
         <div className='sensorList'>
           {
-            registeredAccounts.map((account) => (
-              <>
+            registeredAccounts.map((account, index) => (
+              <div key={index}>
                 {
-                  account.devices.map((device, index) => (
-                    <div style={{ backgroundColor: index % 2 ? 'white' : 'transparent', padding: 5, display: 'flex' }}>
+                  account.devices.map((device, index2) => (
+                    <div key={index2} style={{ backgroundColor: index % 2 ? 'white' : 'transparent', padding: 5, display: 'flex' }}>
                       <div className='deleteButton' onClick={() => onRemoveDevice(device)}>x</div>
                       {
                         device.deviceUUID
@@ -87,10 +91,11 @@ const ManageSensors = () => {
                     </div>
                   ))
                 }
-              </>
+              </div>
             ))
           }
         </div>
+        <Button className='button' disabled={registeredAccounts.length < 1} onClick={onRemoveAllDevice}>Delete All sensors</Button>
         {
           error &&
           <div>Error while getting the devices of this jwt: {error}</div>

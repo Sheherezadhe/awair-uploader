@@ -22,12 +22,14 @@ const Status = () => {
     return (
       <div>
         {
-          result.map((element) => (
-          <>
-            {element.calledAt !== '' && element.receivedAt !== '' && <div>
-              {element.name}: {timeAgo.format(new Date(element.calledAt))} - {timeAgo.format(new Date(element.receivedAt))}
-            </div>}
-            </>
+          result.map((element, index) => (
+            <div key={index}>
+              {element.calledAt !== '' && element.receivedAt !== '' &&
+                <div>
+                  {element.name}: {timeAgo.format(new Date(element.calledAt))} - {timeAgo.format(new Date(element.receivedAt))}
+                </div>
+              }
+            </div>
           ))
         }
       </div>

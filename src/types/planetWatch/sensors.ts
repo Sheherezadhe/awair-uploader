@@ -1,5 +1,6 @@
-export interface Sensor {
-  // Waiting for PW Specifications
+export interface Sensors {
+  success: boolean;
+  data: {
+    sensorId: string;
+  }[]; 
 }
-
-export type Sensors = Sensor[];

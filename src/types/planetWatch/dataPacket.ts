@@ -1,3 +1,5 @@
-export interface PlanetWatchDataPacket {
-  // Waiting for PW Specifications
+import { AwairDataPacket, AwairLatestData } from '../awair/latestData';
+
+export interface PlanetWatchDataPacket extends AwairDataPacket {
+  deviceId: string;
 }

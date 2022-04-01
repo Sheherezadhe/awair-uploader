@@ -1,6 +1,5 @@
 import AwairController from './services/awairService';
 import PlanetWatchService from './services/planetWatchService';
-import { AwairLatestData } from './types/awair/latestData';
 import { AwairDevice } from './types/awair/devices';
 import { Sensors } from './types/planetWatch/sensors';
 import { DateTime } from 'luxon';
@@ -18,11 +17,6 @@ export interface Statuses {
     calledAt: string;
     receivedAt: string;
   }
-}
-
-interface SensorData {
-  sensorId: string;
-  data: AwairLatestData;
 }
 
 export class Scheduler {
@@ -109,6 +103,7 @@ export class Scheduler {
   public removeAllSubscriptions() {
     this.accounts = [];
     this.saveAwairAccountsToLocalStorage();
+    return [...this.accounts];
   }
 
   public async addSubscription(account: AwairAccount) {
@@ -118,18 +113,19 @@ export class Scheduler {
         const deviceRegistered: AwairDevice[] = [];
 
         account.devices.forEach((device) => {
-          // Check if the sensor is registered on PW systems and then push 
-          // TODO
-          deviceRegistered.push(device);
+          // Check if the sensor is registered on PW systems and then push
+          if (this.planetWatchRegisteredSensors.data.findIndex((localDevice) => localDevice.sensorId === device.deviceUUID) !== -1) {
+            deviceRegistered.push(device);
+          }
         });
 
         if (deviceRegistered.length > 0) {
           this.accounts.push({ jwt: account.jwt, devices: deviceRegistered });
           this.saveAwairAccountsToLocalStorage();
         }
-        console.log(this.accounts);
       }
     }
+    this.reset();
     return [...this.accounts];
   }
 
@@ -162,7 +158,8 @@ export class Scheduler {
       this.planetWatchRegisteredSensorsPromise.then((res) => {
         this.planetWatchRegisteredSensors = res;
         callback(res);
-      });
+      })
+        .catch((err) => console.log(err));
     }
     const ready = await this.isReady();
     if (ready) {
@@ -170,9 +167,9 @@ export class Scheduler {
     }
   }
 
-  private async fetchAndSendData() {
+  private async fetchAndSendData(accounts: AwairAccounts) {
     // Grab all the data from awair and save them in a structure
-    this.accounts.forEach((account) => {
+    accounts  .forEach((account) => {
       const jwt = account.jwt;
 
       account.devices.forEach((device) => {
@@ -185,10 +182,11 @@ export class Scheduler {
 
         AwairController.getLatestData(jwt, deviceType, deviceId)
           .then((res) => {
-            PlanetWatchService.sendData(AwairToPlanetWatchMapper.map(device.deviceUUID, res));
+            PlanetWatchService.sendData(AwairToPlanetWatchMapper.map(device.deviceUUID, res))
+              .catch((err) => console.log(err));
             this.statuses[device.deviceUUID].receivedAt = DateTime.now().toISO();
             this.statusSubscribers.forEach((callback) => callback({ ...this.statuses }));
-            this.logs.push('Retrieving data from ' + deviceId + '\n');
+            this.logs.push(DateTime.now().toFormat('[HH:mm:ss]') + ' - Retrieving data from ' + deviceId + '\n');
             this.logSubscribers.forEach((callback) => callback([...this.logs]));
           })
           .catch((error) => {
@@ -199,8 +197,8 @@ export class Scheduler {
   }
 
   public start() {
-    this.fetchAndSendData();
-    this.scheduler = setInterval(this.fetchAndSendData, constants.interval);
+    this.fetchAndSendData(this.accounts);
+    this.scheduler = setInterval(() => this.fetchAndSendData(this.accounts), constants.interval);
   }
 
   public stop() {

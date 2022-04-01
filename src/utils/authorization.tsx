@@ -4,8 +4,6 @@ import Keycloak, { KeycloakInstance } from 'keycloak-js';
 import { ReactKeycloakProvider } from '@react-keycloak/web';
 import { setReady, setAuthenticated } from '../features/auth/AuthSlice';
 import { connect } from 'react-redux';
-import constants from '../constants';
-
 
 export interface AuthorizationProps {
   url: string,
@@ -42,18 +40,11 @@ class Authorization {
   isAuthenticated = () => this.keycloak?.authenticated === true;
 
   login = () => {
-    const url = new URL(window.location.href);
-    const uri = `${url.protocol}//${url.hostname}` + (url.port ? `:${url.port}` : '') + constants.routes.home;
-    return this.keycloak!.login({ redirectUri: uri });
+    return this.keycloak!.login({ redirectUri: 'http://localhost:33333/keycloak-redirect' });
   };
 
-  logout = (redirectUri?: string) => {
-    let uri = redirectUri;
-    if (uri === undefined) {
-      const url = new URL(window.location.href);
-      uri = `${url.protocol}//${url.hostname}` + (url.port ? `:${url.port}` : '') + constants.routes.home;
-    }
-    this.keycloak?.logout({ redirectUri: uri });
+  logout = () => {
+    this.keycloak?.logout({ redirectUri: 'http://localhost:33333/keycloak-redirect' });
   };
 
 }
@@ -72,6 +63,10 @@ const AuthProvider = (props: AuthorizationProviderProps) => {
   return (
     <ReactKeycloakProvider
       authClient={authorization.init(authorizationProps)}
+      initOptions={{
+        checkLoginIframe: false,
+        redirectUri: 'http://localhost:33333/keycloak-redirect'
+      }}
       onEvent={async (event) => {
         if (event === 'onAuthSuccess') {
           props.setAuthenticated(true);

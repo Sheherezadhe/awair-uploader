@@ -3,16 +3,14 @@ export const constants = {
     getLatestData: 'https://developer-apis.awair.is/v1/users/self/devices/{device_type}/{device_id}/air-data/latest',
     getDevices: 'https://developer-apis.awair.is/v1/users/self/devices'
   },
-  // Waiting for PW Specifications
   planetWatch: {
-    sensors: '',
-    sendData: '',
+    sensors: 'https://wearableapi.planetwatch.io/api/sensors',
+    sendData: 'https://wearableapi.planetwatch.io/api/data/devicedata',
   },
-  // Waiting for PW Specifications
   identityProvider: {
-    url: '',
-    realm: '',
-    clientId: '',
+    url: 'https://login.planetwatch.io/auth',
+    realm: 'Planetwatch',
+    clientId: 'external-login',
     role: ''
   },
   routes: {

@@ -25,7 +25,7 @@ const Log = () => {
           <div className='scroll'>
             {
               data.map((log, index) => (
-                <div style={{ backgroundColor: index % 2 ? 'white' : 'rgba(211, 211, 211, 0.571)', paddingLeft: 10 }}>
+                <div key={index} style={{ backgroundColor: index % 2 ? 'white' : 'rgba(211, 211, 211, 0.571)', paddingLeft: 10 }}>
                   {log}
                 </div>
               ))

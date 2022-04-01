@@ -25,8 +25,9 @@
 
 .sensorList {
     margin-top: 10px;
+    margin-bottom: 10px;
     background-color: rgba(211, 211, 211, 0.571);
-    height: 268px;
+    height: 225px;
     overflow-y: scroll;
     scrollbar-width: thin;
     overflow: overlay;
