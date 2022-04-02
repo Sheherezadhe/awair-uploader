@@ -51,7 +51,7 @@
           "@electron-forge/plugin-webpack",
           {
             "mainConfig": "./webpack.main.config.js",
-            "devContentSecurityPolicy": "connect-src 'self' http://wearableapi.test.planetwatch.io http://login.planetwatch.io https://developer-apis.awair.is 'unsafe-eval'",
+            "devContentSecurityPolicy": "connect-src 'self' http://wearableapi.planetwatch.io http://login.planetwatch.io https://developer-apis.awair.is 'unsafe-eval'",
             "renderer": {
               "config": "./webpack.renderer.config.js",
               "entryPoints": [

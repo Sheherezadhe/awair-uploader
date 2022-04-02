@@ -17,7 +17,7 @@ const createWindow = (): void => {
     height: 600 * 1.2,
     width: 800 * 1.2,
     webPreferences: {
-      devTools: false
+      devTools: true
     }
   });
 
