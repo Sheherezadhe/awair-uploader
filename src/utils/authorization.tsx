@@ -40,7 +40,8 @@ class Authorization {
   isAuthenticated = () => this.keycloak?.authenticated === true;
 
   login = () => {
-    return this.keycloak!.login({ redirectUri: 'http://localhost:33333/keycloak-redirect' });
+    return this.keycloak!.login({ scope: "offline_access", redirectUri: 'http://localhost:33333/keycloak-redirect' });
+         
   };
 
   logout = () => {
