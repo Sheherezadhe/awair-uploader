@@ -5,6 +5,7 @@ import { Sensors } from './types/planetWatch/sensors';
 import { DateTime } from 'luxon';
 import { AwairToPlanetWatchMapper } from './mappers/AwairToPlanetWatchMapper';
 import constants from './constants';
+import { authorization } from './utils/authorization';
 export interface AwairAccount {
   jwt: string;
   devices: AwairDevice[];
@@ -168,8 +169,9 @@ export class Scheduler {
   }
 
   private async fetchAndSendData(accounts: AwairAccounts) {
+    await authorization.refreshToken();
     // Grab all the data from awair and save them in a structure
-    accounts  .forEach((account) => {
+    accounts.forEach((account) => {
       const jwt = account.jwt;
 
       account.devices.forEach((device) => {
@@ -182,14 +184,24 @@ export class Scheduler {
 
         AwairController.getLatestData(jwt, deviceType, deviceId)
           .then((res) => {
-            PlanetWatchService.sendData(AwairToPlanetWatchMapper.map(device.deviceUUID, res))
-              .catch((err) => console.log(err));
             this.statuses[device.deviceUUID].receivedAt = DateTime.now().toISO();
             this.statusSubscribers.forEach((callback) => callback({ ...this.statuses }));
-            this.logs.push(DateTime.now().toFormat('[HH:mm:ss]') + ' - Retrieving data from ' + deviceId + '\n');
+            this.logs.push(DateTime.now().toFormat('[HH:mm:ss]') + ' - Retrieved data from ' + deviceId + '\n');
             this.logSubscribers.forEach((callback) => callback([...this.logs]));
+            PlanetWatchService.sendData(AwairToPlanetWatchMapper.map(device.deviceUUID, res))
+              .then(() => {
+                this.logs.push(DateTime.now().toFormat('[HH:mm:ss]') + ' - Successfully sent data to PW servers ' + deviceId + '\n');
+                this.logSubscribers.forEach((callback) => callback([...this.logs]));
+              })
+              .catch((err) => {
+                this.logs.push(DateTime.now().toFormat('[HH:mm:ss]') + ' - Error while sending data to PW servers of ' + deviceId + ' ' + err.response.data.errorMessage + '\n');
+                this.logSubscribers.forEach((callback) => callback([...this.logs]));
+                console.log(err.response.data.errorMessage);
+              });
           })
           .catch((error) => {
+            this.logs.push(DateTime.now().toFormat('[HH:mm:ss]') + ' - Error while retrieving data from ' + deviceId + ' ' + error.message + '\n');
+            this.logSubscribers.forEach((callback) => callback([...this.logs]));
             console.log(error);
           });
       });

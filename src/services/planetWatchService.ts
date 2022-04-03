@@ -7,7 +7,7 @@ const getSensors = async () => {
   const main = constants.planetWatch.sensors;
 
   const response = await axios.get<Sensors>(main);
-  
+
   return response.data;
 };
 

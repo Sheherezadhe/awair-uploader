@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Scheduler, { Statuses } from '../scheduler';
-import TimeAgo, { LocaleData } from 'javascript-time-ago';
-import en from 'javascript-time-ago/locale/en';
+import MyTimeAgo from 'react-timeago';
 import './Status.css';
-
-TimeAgo.addLocale(en as LocaleData);
-const timeAgo = new TimeAgo('en-EN');
 
 const Status = () => {
   const [data, setData] = useState<Statuses>();
@@ -26,7 +22,7 @@ const Status = () => {
             <div key={index}>
               {element.calledAt !== '' && element.receivedAt !== '' &&
                 <div>
-                  {element.name}: {timeAgo.format(new Date(element.calledAt))} - {timeAgo.format(new Date(element.receivedAt))}
+                  {element.name}: <MyTimeAgo date={new Date(element.calledAt)}/> - <MyTimeAgo  date={new Date(element.receivedAt)}/>
                 </div>
               }
             </div>
