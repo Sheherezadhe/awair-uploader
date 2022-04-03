@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import AwairController from '../services/awairService';
 import Scheduler, { AwairAccounts } from '../scheduler';
 import { AwairDevice } from '../types/awair/devices';
-import { Button, Input } from 'antd';
+import { Button, Input, Popover, Row, Col } from 'antd';
 import './ManageSensors.css';
 
 const { Search } = Input;
@@ -52,11 +52,31 @@ const ManageSensors = () => {
     setRegisteredAccounts(Scheduler.getInstance().removeAllSubscriptions());
   };
 
+  const tooltip = (
+    <div>
+      <p>Go to <a href="https://developer.getawair.com/" target="_blank" rel="noopener noreferrer">https://developer.getawair.com/</a></p>
+      <p>Log in with your Awair account</p>
+      <p>First tab on the left "Access Token"</p>
+      <p>Copy the API Token (ex: eyJ0......)</p>
+      <p>Paste the API Token and click the search icon</p>
+      <p>After you see your sensor(s) in the list click Add your token</p>
+    </div>
+  );
+
   return (
     <>
       <p className='TitleManage'>Manage sensors</p>
       <div className='card'>
-      <div className='firstTitle'>Add sensor</div>
+        <Row align="middle" gutter={[16, 16]}>
+          <Col>
+            <div className='firstTitle'>Add sensor</div>
+          </Col>
+          <Col>
+            <Popover title="How to add your sensors." content={tooltip}>
+              <Button type="primary" shape="circle">?</Button>
+            </Popover>
+          </Col>
+        </Row>
         <Search
           className='search'
           placeholder="Search"
