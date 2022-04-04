@@ -16,22 +16,22 @@ const Log = () => {
 
   return (
     <>
-      <div className='titleLog'>
-        Logs
-      </div>
-      <div className='boxLog'>
+      <div className="card">
+      <h2 className='cardTitle'>Logs</h2>
+      <div className='cardBody cardBody-nopadding'>
         {
           data &&
-          <div className='scroll'>
+          <div className='logs scroll'>
             {
               data.map((log, index) => (
-                <div key={index} style={{ backgroundColor: index % 2 ? 'white' : 'rgba(211, 211, 211, 0.571)', paddingLeft: 10 }}>
+                <div key={index} className="log-item" style={{ backgroundColor: index % 2 ? 'white' : 'rgba(211, 211, 211, 0.571)' }}>
                   {log}
                 </div>
               ))
             }
           </div>
         }
+      </div>
       </div>
     </>
   );

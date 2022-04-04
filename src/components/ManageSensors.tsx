@@ -52,31 +52,16 @@ const ManageSensors = () => {
     setRegisteredAccounts(Scheduler.getInstance().removeAllSubscriptions());
   };
 
-  const tooltip = (
-    <div>
-      <p>Go to <a href="https://developer.getawair.com/" target="_blank" rel="noopener noreferrer">https://developer.getawair.com/</a></p>
-      <p>Log in with your Awair account</p>
-      <p>First tab on the left "Access Token"</p>
-      <p>Copy the API Token (ex: eyJ0......)</p>
-      <p>Paste the API Token and click the search icon</p>
-      <p>After you see your sensor(s) in the list click Add your token</p>
-    </div>
-  );
-
   return (
     <>
-      <p className='TitleManage'>Manage sensors</p>
       <div className='card'>
-        <Row align="middle" gutter={[16, 16]}>
-          <Col>
-            <div className='firstTitle'>Add sensor</div>
-          </Col>
-          <Col>
-            <Popover title="How to add your sensors." content={tooltip}>
-              <Button type="primary" shape="circle">?</Button>
-            </Popover>
-          </Col>
-        </Row>
+      <h2 className='cardTitle'>Manage sensors</h2>
+      <div className='cardBody'>
+      <div className='cardSection'>  
+
+      <h3>Add an Awair access token</h3>
+      <p>Paste the access token from your Awair <a href="https://developer.getawair.com/" target="_blank" rel="noopener noreferrer">account</a> and press search.</p>
+
         <Search
           className='search'
           placeholder="Search"
@@ -84,19 +69,33 @@ const ManageSensors = () => {
           disabled={loading}
           onSearch={onSearch}
           onChange={(e) => onJwtChange(e.target.value)} />
-        <div className='title'>List of sensors in this token:</div>
+        </div>
 
-        <div className='box'>
+        {
+          error &&
+          <div className='note note-error'>Error while getting the devices of this jwt: {error}</div>
+        }
+
+        <div className='cardSection flow'>  
+        <h3>List of sensors for this token:</h3>
+        <p>The following sensors are associated with this Awair token.</p>
+
+        <ul className='items-list'>
           {
             devices.map((device, index ) => (
-              <div key={device.deviceUUID} style={{ backgroundColor: index % 2 ? 'white' : 'transparent', paddingLeft: 5 }}>
+              <li className='list-item' key={device.deviceUUID}>
                 {device.deviceUUID}
-              </div>
+              </li>
             ))
           }
+        </ul>
+        <Button className='button' disabled={devices.length < 1} onClick={onAddAccount}>Use this token</Button>
         </div>
-        <Button className='button' disabled={devices.length < 1} onClick={onAddAccount}>Add your token</Button>
-        <div className='title'>List of added sensors:</div>
+
+        <div className='cardSection flow'>
+        <h3>List of added sensors:</h3>
+        <p>The Air quality data from these sensors will be passed on to PlanetWatch.</p>
+
         <div className='sensorList'>
           {
             registeredAccounts.map((account, index) => (
@@ -115,11 +114,10 @@ const ManageSensors = () => {
             ))
           }
         </div>
-        <Button className='button' disabled={registeredAccounts.length < 1} onClick={onRemoveAllDevice}>Delete All sensors</Button>
-        {
-          error &&
-          <div>Error while getting the devices of this jwt: {error}</div>
-        }
+        <Button className='button' disabled={registeredAccounts.length < 1} onClick={onRemoveAllDevice}>Delete all sensors</Button>
+        </div>
+     
+      </div>
       </div>
     </>
 

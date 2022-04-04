@@ -8,7 +8,7 @@ import './LogoutButton.css';
 const LogoutButton = ({ authenticated }: { authenticated: boolean }) => {
   return (<>
     {authenticated &&
-      <Button className='logout' onClick={() => authorization?.logout()}>
+      <Button className='btn btn-primary btn-fluid' onClick={() => authorization?.logout()}>
         Logout
       </Button>
     }

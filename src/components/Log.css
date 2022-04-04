@@ -1,25 +1,13 @@
-.titleLog  {
-        background-color: black;
-           color: white;
-           height: 35px;
-           margin-bottom: 0 !important;
-           border-top-left-radius: 10px;
-           border-top-right-radius: 10px;
-           font-size: 20px;
-           padding-left: 10px;
+.logs {
+  font-size: 0.875rem;
 }
 
-.boxLog {
-    height: 555px;
-    background-color: white;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px ;
-    padding: 5px;
-    padding-top: 0px;
+.log-item {
+  padding: 0.25em 1em;
 }
 
 .scroll {
-    scrollbar-width: thin;
-    overflow: overlay;
-    height: 550px;
+  scrollbar-width: thin;
+  overflow: overlay;
+  height: 550px;
 }

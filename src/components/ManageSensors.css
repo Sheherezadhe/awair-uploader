@@ -1,26 +1,15 @@
 .box {
-    margin-top: 10px;
-    margin-bottom: 10px;
     background-color: rgba(211, 211, 211, 0.571);
     height: 110px;
     scrollbar-width: thin;
     overflow: overlay;
-    border-radius: 10px;
+    border-radius: var(--border-radius);
 }
 
 .title {
     margin-top: 10px;
     font-size: medium;
     font-weight: bold;
-}
-
-.firstTitle {
-    font-size: medium;
-    font-weight: bold;
-}
-
-.search {
-    margin-top: 10px;
 }
 
 .sensorList {
@@ -31,31 +20,19 @@
     overflow-y: scroll;
     scrollbar-width: thin;
     overflow: overlay;
-    border-radius: 10px;
+    border-radius: var(--border-radius);
  
 }
 
 .TitleManage {
-    background-color: black;
+    background-color: var(--bg-color-pw-blue);
     color: white;
     height: 35px;
     margin-bottom: 0 !important;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
     font-size: 20px;
     padding-left: 10px;
-}
-
-.card {
-    margin-top: 0;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    background-color: white;
-    padding: 10px;    
-}
-
-.button{
-    margin-left: 70px;
 }
 
 .deleteButton {

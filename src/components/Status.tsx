@@ -16,19 +16,19 @@ const Status = () => {
       result.push({ name: key, receivedAt: value.receivedAt, calledAt: value.calledAt });
     }
     return (
-      <div>
+      <tbody>
         {
           result.map((element, index) => (
-            <div key={index}>
+            <tr key={index}>
               {element.calledAt !== '' && element.receivedAt !== '' &&
-                <div>
-                  {element.name}: <MyTimeAgo date={new Date(element.calledAt)}/> - <MyTimeAgo  date={new Date(element.receivedAt)}/>
-                </div>
+                
+                  <><td>{element.name}</td><td><MyTimeAgo date={new Date(element.calledAt)} /></td><td><MyTimeAgo date={new Date(element.receivedAt)} /></td></>
+                
               }
-            </div>
+            </tr>
           ))
         }
-      </div>
+      </tbody>
     );
   };
 
@@ -38,18 +38,21 @@ const Status = () => {
 
   return (
     <>
-      <p className='titleStatus'>
-        Sensor Status
-      </p>
-      <div className='table'>
-        <div>Name</div>
-        <div className='call'>Last Call</div>
-        <div className='data'>Last Data</div>
+      <div className="card">
+        <h2 className='cardTitle'>Sensor status</h2>
+        <div className='cardBody'>
+        <table>
+          <tr>
+          <th>Name</th>
+          <th className='call'>Last call</th>
+          <th className='data'>Last data</th>
+          </tr>
+        
+          {
+            data && renderStatuses()
+          }
+        </table>
       </div>
-      <div className='boxStatus'>
-        {
-          data && renderStatuses()
-        }
       </div>
     </>
   );
