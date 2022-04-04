@@ -10,8 +10,11 @@
   --btn-primary-bg-default:  #094fc1;
   --input-focus: #dd8608;
   --input-error: #bb000d;
-  --note-error-border-color: rgb(187, 0, 13);
+  --delete-btn-bg-color: #bb000d;
+  --note-error-border-color: #bb000d;
   --note-error-bg-color: #ffe1e3;
+  --row-highlight: #e6e6e6;
+  --data-background: #e6e6e6;
 }
 
 
@@ -114,10 +117,11 @@ td {
 th {
   text-align: left;
   padding: var(--size-space-8);
+  background-color: #fff;
 }
 
 tr:nth-child(even) {background: #fff}
-tr:nth-child(odd) {background: #ccc}
+tr:nth-child(odd) {background: var(--row-highlight)}
 
 .items-list {
   list-style-type: none;
@@ -125,11 +129,12 @@ tr:nth-child(odd) {background: #ccc}
   margin: 0;
   min-height: var(--size-dimension-128);
   border-radius: var(--border-radius);
-  background: #e0e0e0;
+  background: var(--data-background);
 }
 
 .list-item {
   padding: var(--size-space-8) var(--size-space-16);
+  display: flex;
 }
 
 .list-item:first-of-type {
@@ -142,7 +147,7 @@ tr:nth-child(odd) {background: #ccc}
   border-bottom-right-radius: var(--border-radius);
 }
 
-.list-item:nth-child(even) {background: #ccc}
+.list-item:nth-child(even) {background: var(--row-highlight)}
 .list-item:nth-child(odd) {background: #fff}
 
 .note {

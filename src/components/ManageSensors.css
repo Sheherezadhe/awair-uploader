@@ -1,48 +1,12 @@
-.box {
-    background-color: rgba(211, 211, 211, 0.571);
-    height: 110px;
-    scrollbar-width: thin;
-    overflow: overlay;
-    border-radius: var(--border-radius);
-}
-
-.title {
-    margin-top: 10px;
-    font-size: medium;
-    font-weight: bold;
-}
-
-.sensorList {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background-color: rgba(211, 211, 211, 0.571);
-    height: 225px;
-    overflow-y: scroll;
-    scrollbar-width: thin;
-    overflow: overlay;
-    border-radius: var(--border-radius);
- 
-}
-
-.TitleManage {
-    background-color: var(--bg-color-pw-blue);
-    color: white;
-    height: 35px;
-    margin-bottom: 0 !important;
-    border-top-left-radius: var(--border-radius);
-    border-top-right-radius: var(--border-radius);
-    font-size: 20px;
-    padding-left: 10px;
-}
-
 .deleteButton {
-    padding-left: 6.5px;
     background-color: rgba(245, 82, 82, 0.858);
     color: white;
-    margin-right: 10px;
+    margin-right: 0.5em;
     border-radius: 100%;
-    font-size: 13px;
     cursor: pointer;
-    width: 20px;
-    height: 20px;
+    width: 1.5em;
+    height: 1.5em;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 }

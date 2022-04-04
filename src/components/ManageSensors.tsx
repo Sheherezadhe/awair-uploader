@@ -96,13 +96,13 @@ const ManageSensors = () => {
         <h3>List of added sensors:</h3>
         <p>The Air quality data from these sensors will be passed on to PlanetWatch.</p>
 
-        <div className='sensorList'>
+        <div className='items-list'>
           {
             registeredAccounts.map((account, index) => (
               <div key={index}>
                 {
                   account.devices.map((device, index2) => (
-                    <div key={index2} style={{ backgroundColor: index % 2 ? 'white' : 'transparent', padding: 5, display: 'flex' }}>
+                    <div key={index2} className="list-item">
                       <div className='deleteButton' onClick={() => onRemoveDevice(device)}>x</div>
                       {
                         device.deviceUUID

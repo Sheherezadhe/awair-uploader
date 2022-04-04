@@ -18,13 +18,13 @@ const Log = () => {
     <>
       <div className="card">
       <h2 className='cardTitle'>Logs</h2>
-      <div className='cardBody cardBody-nopadding'>
+      <div className='cardBody'>
         {
           data &&
-          <div className='logs scroll'>
+          <div className='items-list scroll'>
             {
               data.map((log, index) => (
-                <div key={index} className="log-item" style={{ backgroundColor: index % 2 ? 'white' : 'rgba(211, 211, 211, 0.571)' }}>
+                <div key={index} className="list-item">
                   {log}
                 </div>
               ))
