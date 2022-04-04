@@ -24,7 +24,7 @@ This tool was built in very few days so it can be full of bugs. For the time bei
 9. Finish!
 
 
-## Installation
+## Installation (MacOS)
 Since the project is not yet approved by PlanetWatch Company, the software is basically only fetching data from Awair's servers. For the time being we discourage any usage of this project until PlanetWatch approves and shares the endpoints where to write our data.
 
 If you still want to install this tool, just run clone the repository and run the following commands:
@@ -38,8 +38,17 @@ If you want to create a standalone version of Awair-uploader, run the following 
 npm run make
 ```
 
+## Installation (Debian based Distros)
+Firstoff you need to install node 12:
+```sh
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+npm install
+npm start
+```
+i couldn get the packaging thingy to works, so as of now you just can compile and run the binary like described above.
+
 ## Contributing
 
-The project was developed on MacOS and the building section is only for MacOS. Feel free to contribute to the project by adding your distro building section (Windows/Linux) with a Pull Request. 
+The project was developed on MacOS and the building section is only for MacOS. Feel free to contribute to the project by adding your distro building section (Windows/Linux) with a Pull Request.
 
 We will appreciate any help to improve of the code.
