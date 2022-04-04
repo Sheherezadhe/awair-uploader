@@ -25,7 +25,8 @@ This tool was built in very few days so it can be full of bugs. For the time bei
 
 
 ## Installation
-Since the project is not yet approved by PlanetWatch Company, the software is basically only fetching data from Awair's servers. For the time being we discourage any usage of this project until PlanetWatch approves and shares the endpoints where to write our data.
+Please check my step by step guide on reddit for the user approach:
+https://www.reddit.com/r/PlanetWatchers/comments/tscbe3/project_awair_element_user_data_retrieval/
 
 If you still want to install this tool, just run clone the repository and run the following commands:
 ```sh
