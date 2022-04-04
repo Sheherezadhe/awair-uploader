@@ -8,6 +8,7 @@ import { authorization } from './utils/authorization';
 import Scheduler from './scheduler';
 import { Sensors } from './types/planetWatch/sensors';
 import './App.css';
+import Loader from './components/app/Loader';
 
 interface HomePageProps {
   isReady: boolean
@@ -15,12 +16,12 @@ interface HomePageProps {
 
 const App = (props: HomePageProps) => {
   if (!props.isReady) {
-    return <div className='loading'>Loading...</div>;
+    return <Loader timeout={60} />;
   }
 
   if (authorization?.isAuthenticated() === false) {
     authorization?.login();
-    return <><div className='loading'>Redirecting to Login</div></>;
+    return <Loader tip="Redirecting to Login" />;
   }
 
   const onComplete = (response: Sensors) => {
