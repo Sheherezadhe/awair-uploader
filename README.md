@@ -11,9 +11,28 @@ I'm going to upload two builds of this tool at the first very moment:
 * one for windows (x64)
 * one for MacOs (M1) (I've tested on M1 but i'm not sure it will work only on M1, but also on Intel, just drop a comment if you can't run this on Intel)
 
+## Second Release
+
+Added two Pull requests
+Added more detailed logs to better understand why the tool is not working properly
+Added the token refresh (i hope this will prevent the app to stop working after 24h)
+
 ## DISCLAIMER AND WARNINGS
 
 This tool was built in very few days so it can be full of bugs. For the time being i've found one main issue while using this tool. Since the authentication is a tricky process, once you launch the application you have to force the reload when it got stuck on "Loading..." page using the "View" -> "Force Reload"
+
+## Download - Installation - Setup - Running the tool:
+
+Please check my step by step guide on reddit for the user approach:
+https://www.reddit.com/r/PlanetWatchers/comments/tscbe3/project_awair_element_user_data_retrieval/
+
+The version on Reddit will be updated more frequent and includes pictures and a more step by step approach for regular users.
+
+## Download:
+
+go to github repository https://github.com/Sheherezadhe/awair-uploader/
+click on the tag flag on the right side for the lastest current version
+you get to the repository overview and there you only download the version you need, Windows, macOS, etc.
 
 ## How to use this tool
 
