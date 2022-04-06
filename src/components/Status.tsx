@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Scheduler, { Statuses } from '../scheduler';
 import MyTimeAgo from 'react-timeago';
-import './Status.css';
 
 const Status = () => {
   const [data, setData] = useState<Statuses>();
@@ -39,20 +38,19 @@ const Status = () => {
   return (
     <>
       <div className="card">
-        <h2 className='cardTitle'>Sensor status</h2>
-        <div className='cardBody'>
-        <table>
-          <tr>
-          <th>Name</th>
-          <th className='call'>Last call</th>
-          <th className='data'>Last data</th>
-          </tr>
-        
-          {
-            data && renderStatuses()
-          }
-        </table>
-      </div>
+        <h2 className="cardTitle">Sensor status</h2>
+        <div className="cardBody">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Last call</th>
+                <th>Last data</th>
+              </tr>
+            </thead>
+            {data && renderStatuses()}
+          </table>
+        </div>
       </div>
     </>
   );
