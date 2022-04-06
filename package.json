@@ -5,7 +5,7 @@
   "description": "An Awair Element data uploader",
   "main": ".webpack/main",
   "author": {
-    "name": "Sheherezadhe and the lovely PW Comunity"
+    "name": "Sheherezadhe and the lovely PW Community"
   },
   "scripts": {
     "start": "electron-forge start",

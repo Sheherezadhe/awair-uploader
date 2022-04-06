@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Scheduler, { Statuses } from '../scheduler';
 import MyTimeAgo from 'react-timeago';
-import './Status.css';
 
 const Status = () => {
   const [data, setData] = useState<Statuses>();
@@ -16,19 +15,19 @@ const Status = () => {
       result.push({ name: key, receivedAt: value.receivedAt, calledAt: value.calledAt });
     }
     return (
-      <div>
+      <tbody>
         {
           result.map((element, index) => (
-            <div key={index}>
+            <tr key={index}>
               {element.calledAt !== '' && element.receivedAt !== '' &&
-                <div>
-                  {element.name}: <MyTimeAgo date={new Date(element.calledAt)}/> - <MyTimeAgo  date={new Date(element.receivedAt)}/>
-                </div>
+                
+                  <><td>{element.name}</td><td><MyTimeAgo date={new Date(element.calledAt)} /></td><td><MyTimeAgo date={new Date(element.receivedAt)} /></td></>
+                
               }
-            </div>
+            </tr>
           ))
         }
-      </div>
+      </tbody>
     );
   };
 
@@ -38,18 +37,20 @@ const Status = () => {
 
   return (
     <>
-      <p className='titleStatus'>
-        Sensor Status
-      </p>
-      <div className='table'>
-        <div>Name</div>
-        <div className='call'>Last Call</div>
-        <div className='data'>Last Data</div>
-      </div>
-      <div className='boxStatus'>
-        {
-          data && renderStatuses()
-        }
+      <div className="card">
+        <h2 className="cardTitle">Sensor status</h2>
+        <div className="cardBody">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Last call</th>
+                <th>Last data</th>
+              </tr>
+            </thead>
+            {data && renderStatuses()}
+          </table>
+        </div>
       </div>
     </>
   );

@@ -15,21 +15,26 @@ const AvailableSensors = () => {
 
   return (
     <>
-      <p className='titleAvailable'>
-        Available PW Sensors
-      </p>
-      <div className='boxAvailable'>
-        {
-          sensors && sensors.data
-            .filter((sensor) => sensor.sensorId.includes('awair-element'))
-            .map((sensor, index) => (
-              <div key={index} className='list' style={{ backgroundColor: index % 2 ? 'rgba(211, 211, 211, 0.571)' : 'transparent' }}>
-                {
-                  sensor.sensorId
-                }
-              </div>
-            ))
-        }
+      <div className="card">
+        <h2 className='cardTitle'>Available PW Sensors</h2>
+        <div className='cardBody'>
+        <div className='cardSection'>
+        <p>These are the available sensors associated with this PlanetWatch account.</p>
+          <ul className='items-list'>
+          {
+            sensors && sensors.data
+              .filter((sensor) => sensor.sensorId.includes('awair-element'))
+              .map((sensor, index) => (
+                <li key={index} className='list-item'>
+                  {
+                    sensor.sensorId
+                  }
+                </li>
+              ))
+          }
+          </ul>
+        </div>
+        </div>
       </div>
     </>
   );

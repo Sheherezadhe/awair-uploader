@@ -1,71 +1,12 @@
-.box {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background-color: rgba(211, 211, 211, 0.571);
-    height: 110px;
-    scrollbar-width: thin;
-    overflow: overlay;
-    border-radius: 10px;
-}
-
-.title {
-    margin-top: 10px;
-    font-size: medium;
-    font-weight: bold;
-}
-
-.firstTitle {
-    font-size: medium;
-    font-weight: bold;
-}
-
-.search {
-    margin-top: 10px;
-}
-
-.sensorList {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    background-color: rgba(211, 211, 211, 0.571);
-    height: 225px;
-    overflow-y: scroll;
-    scrollbar-width: thin;
-    overflow: overlay;
-    border-radius: 10px;
- 
-}
-
-.TitleManage {
-    background-color: black;
-    color: white;
-    height: 35px;
-    margin-bottom: 0 !important;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    font-size: 20px;
-    padding-left: 10px;
-}
-
-.card {
-    margin-top: 0;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-    background-color: white;
-    padding: 10px;    
-}
-
-.button{
-    margin-left: 70px;
-}
-
 .deleteButton {
-    padding-left: 6.5px;
     background-color: rgba(245, 82, 82, 0.858);
     color: white;
-    margin-right: 10px;
+    margin-right: 0.5em;
     border-radius: 100%;
-    font-size: 13px;
     cursor: pointer;
-    width: 20px;
-    height: 20px;
+    width: 1.5em;
+    height: 1.5em;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
 }
